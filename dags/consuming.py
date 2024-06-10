@@ -9,6 +9,7 @@ from cassandra.cluster import Cluster
 import json
 from utils.consume_data import create_keyspace, create_table
 import logging
+import time
 logging.basicConfig(level=logging.INFO)
 
 
@@ -38,8 +39,17 @@ def consume_kafka_messages(session):
         enable_auto_commit=True,
         value_deserializer=lambda x: x)
     count = 0
+    # duration_minutes = 1
+    start_time = time.time()
+    # while True:
+    #     elapsed_time = time.time() - start_time
+    #     print(elapsed_time)
+    #     if elapsed_time >= duration_minutes * 0.5:
+    #         print(f'Stopping after {elapsed_time}!!!')
+    #         break
+    #
+    #     message = next(consumer)
     for message in consumer:
-
         try:
             data = json.loads(message.value.decode('utf-8'))
             logging.info(f"Received message: {data}")

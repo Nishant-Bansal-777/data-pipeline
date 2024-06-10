@@ -27,4 +27,8 @@ DESCRIBE TABLES IN spark_streams;
 
 /opt/bitnami/spark/bin/spark-submit --master spark://spark-master:7077 --class org.apache.spark.examples.SparkPi /path/to/spark-examples_2.13-3.4.1.jar 100
 
+
+docker exec -it b6b870594f40 airflow dags test kafka_consumer_dag
+docker exec -it b6b870594f40 airflow dags test stream_gainer_data
+docker exec -it b6b870594f40 airflow dags list
 '''

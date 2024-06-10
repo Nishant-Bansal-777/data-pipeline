@@ -51,7 +51,8 @@ with DAG(
     dag_id='stream_gainer_data',
     description='Streams top gainers from stock market',
     default_args=default_args,
-    schedule='@hourly',
+    # schedule='@hourly',
+    schedule='30 9-15 * * 1-5',
     catchup=False
 ) as gainer_dag:
     fetch_gainers_task = PythonOperator(
@@ -72,7 +73,8 @@ with DAG(
     dag_id='stream_loser_data',
     description='Streams top losers from stock market',
     default_args=default_args,
-    schedule='@hourly',
+    # schedule='@hourly',
+    schedule='30 9-15 * * 1-5',
     catchup=False
 ) as loser_dag:
     fetch_losers_task = PythonOperator(
